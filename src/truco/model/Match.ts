@@ -1,4 +1,4 @@
-import Avatar from "./Avatar";
+import User from "./User";
 import Deck from "./Deck";
 
 export default class Match {

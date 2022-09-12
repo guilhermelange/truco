@@ -1,7 +1,11 @@
 import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import Constants from "../styles/Constants";
 
-export default function Scoreboard() {
+interface IScoreboardRequest {
+    score: number[];
+}
+
+export default function Scoreboard({ score }: IScoreboardRequest) {
     const formBackground = Constants.getFormBackground();
 
     return (
@@ -10,13 +14,13 @@ export default function Scoreboard() {
             <Text w={'100%'} mt={0}>
                 <Flex justifyContent={'space-between'} gap={0} bgColor={'whiteAlpha.200'} p={2} rounded={6} w={'100%'}>
                     <Text>Nós: </Text>
-                    <Text mr={2}>3</Text>
+                    <Text mr={2}>{score[0]}</Text>
                 </Flex>
             </Text>
             <Text w={'100%'} mt={0}>
                 <Flex justifyContent={'space-between'} gap={0} bgColor={'whiteAlpha.200'} p={2} rounded={6} w={'100%'}>
                     <Text>Eles: </Text>
-                    <Text mr={2}>0</Text>
+                    <Text mr={2}>{score[1]}</Text>
                 </Flex>
             </Text>
         </VStack>

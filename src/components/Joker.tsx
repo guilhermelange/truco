@@ -1,7 +1,12 @@
 import { Box, Heading, Text, VStack } from "@chakra-ui/react";
 import Constants from "../styles/Constants";
+import Card from "../truco/model/Card";
 
-export default function Joker() {
+interface IJokerRequest {
+    joker: Card;
+}
+
+export default function Joker({ joker }: IJokerRequest) {
     const formBackground = Constants.getFormBackground();
 
     return (
@@ -9,7 +14,7 @@ export default function Joker() {
             <Heading size={'md'}>Manilha (Virada):</Heading>
             <VStack alignItems={'center'} w={'100%'}>
                 <Box>
-                    <img style={{ maxHeight: '220px' }} src={'/cards/1_moles.png'} height={'100%'} width={'100%'}></img>
+                    <img style={{ maxHeight: '220px' }} src={`/cards/${joker.getImage()}`} height={'100%'} width={'100%'}></img>
                 </Box>
             </VStack>
         </VStack>

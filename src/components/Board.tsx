@@ -31,15 +31,17 @@ export default function Board({deck, users}: IBoardRequest) {
         <>
             <Grid
                 h={'100%'}
-                w={(height)}
+                w={(height) ? height : '60%'}
                 ref={ref}
                 templateRows='repeat(3, 1fr)'
                 templateColumns='repeat(3, 1fr)'
                 gap={0}
                 bg={'radial-gradient(circle, rgba(70,196,21,1) 10%, rgba(13,112,34,1) 100%)'}
-                rounded={10}
+                rounded={500}
                 border={'10px solid'}
                 borderColor={'whiteAlpha.500'}
+                // transform="rotate(90deg)"
+                // transition={'transform .8s ease-in-out'}
             >
                 <GridItem >
                 </GridItem>

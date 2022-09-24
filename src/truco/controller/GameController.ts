@@ -21,9 +21,9 @@ export default class GameController implements IGameController {
         this.deck.shuffleCards();
         this.users = [
             new User("Guilherme Lange", UserStatus.ONLINE, UserDirection.BOTTOM),
-            new User("Guilherme Lange", UserStatus.ONLINE, UserDirection.RIGHT),
+            // new User("Guilherme Lange", UserStatus.ONLINE, UserDirection.RIGHT),
             new User("Guilherme Lange", UserStatus.ONLINE, UserDirection.TOP),
-            new User("Guilherme Lange", UserStatus.ONLINE, UserDirection.LEFT)
+            // new User("Guilherme Lange", UserStatus.ONLINE, UserDirection.LEFT)
         ];
         this.deck.distributeCards(this.users);
     }

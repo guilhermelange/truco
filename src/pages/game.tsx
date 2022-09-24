@@ -6,7 +6,9 @@ import GameStatus from '../components/GameStatus';
 import Constants from '../styles/Constants';
 import GameController from '../truco/controller/GameController';
 import IGameObserver from '../truco/controller/IGameObserver';
-import { useLayoutEffect, useReducer } from 'react';
+import { useLayoutEffect, useReducer, useContext } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { GameContext } from '../context/GameContext';
 
 class GameManager implements IGameObserver {
   reload(): void {};

@@ -46,14 +46,16 @@ export default function Board({deck, users}: IBoardRequest) {
                 <GridItem >
                 </GridItem>
                 <GridItem position={'relative'}>
-                    <Avatar user={users[2]} />
-                    <UserCards user={users[2]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards>
+                    {/* <Avatar user={users[2]} />
+                    <UserCards user={users[2]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards> */}
+                    <Avatar user={users[1]} />
+                    <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards>
                 </GridItem>
                 <GridItem >
                 </GridItem>
                 <GridItem position={'relative'}>
-                    <Avatar user={users[3]} />
-                    <UserCards user={users[3]} cardWidth={cardWidth} rotate="rotate(90deg)"></UserCards>
+                    {/* <Avatar user={users[3]} />
+                    <UserCards user={users[3]} cardWidth={cardWidth} rotate="rotate(90deg)"></UserCards> */}
                 </GridItem>
                 <GridItem
                     display={'flex'}
@@ -73,8 +75,8 @@ export default function Board({deck, users}: IBoardRequest) {
                     
                 </GridItem>
                 <GridItem position={'relative'}>
-                    <Avatar user={users[1]} />
-                    <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(270deg)"></UserCards>
+                    {/* <Avatar user={users[1]} />
+                    <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(270deg)"></UserCards> */}
                 </GridItem>
                 <GridItem >
                 </GridItem>

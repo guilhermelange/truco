@@ -2,6 +2,7 @@ import { extendTheme, withDefaultColorScheme, withDefaultVariant } from '@chakra
 
 const config = {
   initialColorMode: 'dark',
+  useSystemColorMode: false
 }
 
 const styles = {

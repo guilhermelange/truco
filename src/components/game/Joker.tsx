@@ -1,6 +1,6 @@
 import { Box, Heading, Text, VStack } from "@chakra-ui/react";
-import Constants from "../styles/Constants";
-import Card from "../truco/model/Card";
+import Constants from "../../styles/Constants";
+import Card from "../../truco/model/Card";
 
 interface IJokerRequest {
     joker: Card;

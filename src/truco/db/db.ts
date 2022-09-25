@@ -1,11 +1,13 @@
 import User from "../model/User";
+import nookies from 'nookies'
 
 export default class Database {
     private static instance: Database;
-    public users: User[];
+    private _users: User[];
 
-    private constructor() { 
-        this.users = [];
+
+    private constructor() {
+        this._users = [];
     }
 
     public static getInstance(): Database {
@@ -14,5 +16,18 @@ export default class Database {
         }
 
         return Database.instance;
+    }
+
+    public get users(): User[] {
+        return this._users;
+    }
+
+    public set users(users: User[]) {
+        this._users = users;
+
+        nookies.set(null, 'dados', JSON.stringify(this._users), {
+            maxAge: 30 * 24 * 60 * 60,
+            path: '/',
+        })
     }
 }

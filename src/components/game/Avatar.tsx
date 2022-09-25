@@ -1,5 +1,5 @@
 import { Avatar, AvatarBadge } from "@chakra-ui/react";
-import User, { UserDirection } from "../truco/model/User";
+import User, { UserDirection } from "../../truco/model/User";
 
 interface AvatarRequest {
     user: User;
@@ -7,6 +7,12 @@ interface AvatarRequest {
 }
 
 export default function AvatarComponent({ user, direction }: AvatarRequest) {
+    if (!user) {
+        return (
+            <div></div>
+        )
+    }
+
     switch (direction) {
         case UserDirection.TOP:
             return (

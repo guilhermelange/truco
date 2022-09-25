@@ -1,8 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { GameContext } from "../context/GameContext";
-import Card from "../truco/model/Card";
-import User from "../truco/model/User";
-import {useContext} from "react"
+import User from "../../truco/model/User";
 
 interface IUserCardsRequest {
     user: User,
@@ -12,6 +9,12 @@ interface IUserCardsRequest {
 }
 
 export default function UserCards({ user, cardWidth, rotate, show = false}: IUserCardsRequest) {
+    if (!user) {
+        return (
+            <div></div>
+        )
+    }
+    
     const cards = user.cards;
 
     return (

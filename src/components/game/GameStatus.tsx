@@ -1,5 +1,5 @@
 import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
-import Constants from "../styles/Constants";
+import Constants from "../../styles/Constants";
 
 export default function GameStatus() {
     const formBackground = Constants.getFormBackground();

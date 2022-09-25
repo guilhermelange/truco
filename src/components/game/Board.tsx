@@ -1,10 +1,12 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Icon, Text } from "@chakra-ui/react";
 import { useRef, useState, useEffect } from 'react';
-import Avatar from "../components/Avatar";
-import User, { UserDirection } from "../truco/model/User";
-import Deck from "../truco/model/Deck";
+import Avatar from "../../components/game/Avatar";
+import User, { UserDirection } from "../../truco/model/User";
+import Deck from "../../truco/model/Deck";
 import UserCards from "./UserCards";
 import DeckComponent from "./Deck";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useRouter } from "next/router";
 
 interface IBoardRequest {
     deck: Deck
@@ -17,6 +19,7 @@ export default function Board({deck, users}: IBoardRequest) {
     const [height, setHeight] = useState(0);
     const [heightGrid, setHeightGrid] = useState(0);
     const cardWidth = heightGrid / 3.1;
+    const router = useRouter();
 
     useEffect(() => {
         if (ref.current) {
@@ -43,6 +46,9 @@ export default function Board({deck, users}: IBoardRequest) {
                 // transform="rotate(90deg)"
                 // transition={'transform .8s ease-in-out'}
             >
+                <Text position={'absolute'} top={4} left={4} onClick={() => {router.push('/')}} cursor={'pointer'}>
+                    <Icon as={IoMdArrowRoundBack} w={6} h={6}></Icon>
+                </Text>
                 <GridItem >
                 </GridItem>
                 <GridItem position={'relative'}>

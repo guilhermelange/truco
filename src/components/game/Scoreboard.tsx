@@ -1,5 +1,5 @@
 import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
-import Constants from "../styles/Constants";
+import Constants from "../../styles/Constants";
 
 interface IScoreboardRequest {
     score: number[];

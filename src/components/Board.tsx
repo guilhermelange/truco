@@ -1,7 +1,7 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { useRef, useState, useEffect } from 'react';
 import Avatar from "../components/Avatar";
-import User, { UserDirection, UserStatus } from "../truco/model/User";
+import User, { UserDirection } from "../truco/model/User";
 import Deck from "../truco/model/Deck";
 import UserCards from "./UserCards";
 import DeckComponent from "./Deck";
@@ -48,7 +48,7 @@ export default function Board({deck, users}: IBoardRequest) {
                 <GridItem position={'relative'}>
                     {/* <Avatar user={users[2]} />
                     <UserCards user={users[2]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards> */}
-                    <Avatar user={users[1]} />
+                    <Avatar user={users[1]} direction={UserDirection.TOP} />
                     <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards>
                 </GridItem>
                 <GridItem >
@@ -81,7 +81,7 @@ export default function Board({deck, users}: IBoardRequest) {
                 <GridItem >
                 </GridItem>
                 <GridItem ref={reff} position='relative'>
-                    <Avatar user={users[0]} />
+                    <Avatar user={users[0]} direction={UserDirection.BOTTOM}/>
                     <UserCards user={users[0]} cardWidth={cardWidth} show={true}></UserCards>
                 </GridItem>
                 <GridItem >

@@ -2,7 +2,9 @@ import { Button, Container, Flex, FormControl, FormErrorMessage, FormLabel, Grid
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { FiHelpCircle } from "react-icons/fi"
+import FormController from "../truco/controller/form/FormController";
 
+const controller = new FormController();
 export default function Start() {
     const {
         register,
@@ -14,15 +16,33 @@ export default function Start() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const textPlaceholder = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
-    const handleStart = () => {
-        toast({
-            title: 'Conectado',
-            description: 'Você está conectado. Aproveite!',
-            status: 'success',
-            duration: 3000,
-            isClosable: false
-        })
-        router.push('/game')
+    const handleStart = (data: any) => {
+        const params = [
+            { name: data.user1, algorithm: data.type1 },
+            { name: data.user2, algorithm: data.type2 }
+        ]
+        try {
+            controller.startMatch(params);
+            toast({
+                title: 'Conectado',
+                description: 'Você está conectado. Aproveite!',
+                status: 'success',
+                duration: 3000,
+                isClosable: true
+            })
+            router.push('/game');
+        } catch (error) {
+            let message = 'Erro interno'
+            if (error instanceof Error)
+                message = error.message
+            toast({
+                title: 'Falha ao iniciar',
+                description: message,
+                status: 'error',
+                duration: 4000,
+                isClosable: true
+            })
+        }
     }
 
     return (
@@ -98,18 +118,18 @@ export default function Start() {
                     <ModalBody>
                         <Flex direction={'column'} gap={4}>
                             <Text>
-                                <Text display={'inline'} color={'teal.100'}>Ramdom. </Text>Jogadas completamente aleatórias
+                                <Text fontWeight={'bold'} display={'inline'}>Ramdom: </Text>Jogadas completamente aleatórias
                             </Text>
                             <Text>
-                                <Text display={'inline'} color={'teal.100'}>Baseline 1. </Text>Conjunto de regras convencionais no truco para identificar jogadas
+                                <Text fontWeight={'bold'} display={'inline'}>Baseline 1: </Text>Conjunto de regras convencionais no truco para identificar jogadas
                             </Text>
                             <Text>
-                                <Text display={'inline'} color={'teal.100'}>Monte Carlo Search Tree. </Text>Utiliza o algoritmo de busca avançado para definir as jogadas com base em simulações 
+                                <Text fontWeight={'bold'} display={'inline'}>Monte Carlo Search Tree: </Text>Utiliza o algoritmo de busca avançado para definir as jogadas com base em simulações
                             </Text>
                         </Flex>
                     </ModalBody>
                     <ModalFooter>
-                        <Button variant='ghost' onClick={onClose}><Text display={'inline'} color={'teal.100'}>Vamos Jogar!</Text></Button>
+                        <Button variant='ghost' onClick={onClose}><Text display={'inline'}>Vamos Jogar!</Text></Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

@@ -1,12 +1,13 @@
 import { Avatar, AvatarBadge } from "@chakra-ui/react";
-import User, { UserStatus, UserDirection } from "../truco/model/User";
+import User, { UserDirection } from "../truco/model/User";
 
 interface AvatarRequest {
     user: User;
+    direction: UserDirection
 }
 
-export default function AvatarComponent({ user }: AvatarRequest) {
-    switch (user.direction) {
+export default function AvatarComponent({ user, direction }: AvatarRequest) {
+    switch (direction) {
         case UserDirection.TOP:
             return (
                 <Avatar position={'absolute'}
@@ -14,7 +15,7 @@ export default function AvatarComponent({ user }: AvatarRequest) {
                     left={'50%'}
                     transform='translate(-50%, -50%)'
                     name={user.name}>
-                    <AvatarBadge boxSize='1.25em' bg={user.status == UserStatus.ONLINE ? 'green.500' : 'whiteAlpha.700'} />
+                    <AvatarBadge boxSize='1.25em' bg={'green.500'} />
                 </Avatar>
             )
             break;
@@ -25,7 +26,7 @@ export default function AvatarComponent({ user }: AvatarRequest) {
                     top={'50%'}
                     transform='translate(-50%, -50%)'
                     name={user.name}>
-                    <AvatarBadge boxSize='1.25em' bg={user.status == UserStatus.ONLINE ? 'green.500' : 'whiteAlpha.700'} />
+                    <AvatarBadge boxSize='1.25em' bg={'green.500'} />
                 </Avatar>
             )
         case UserDirection.BOTTOM:
@@ -35,7 +36,7 @@ export default function AvatarComponent({ user }: AvatarRequest) {
                     left={'50%'}
                     transform='translate(-50%, -0%)'
                     name={user.name}>
-                    <AvatarBadge boxSize='1.25em' bg={user.status == UserStatus.ONLINE ? 'green.500' : 'whiteAlpha.700'} />
+                    <AvatarBadge boxSize='1.25em' bg={'green.500'} />
                 </Avatar>
             )
         case UserDirection.RIGHT:
@@ -45,7 +46,7 @@ export default function AvatarComponent({ user }: AvatarRequest) {
                     top={'50%'}
                     transform='translate(-0%, -50%)'
                     name={user.name}>
-                    <AvatarBadge boxSize='1.25em' bg={user.status == UserStatus.ONLINE ? 'green.500' : 'whiteAlpha.700'} />
+                    <AvatarBadge boxSize='1.25em' bg={'green.500'} />
                 </Avatar>
             )
         default:
@@ -56,7 +57,7 @@ export default function AvatarComponent({ user }: AvatarRequest) {
                     // left={direction == UserDirection.LEFT ? spacing : 'auto'}
                     // right={direction == UserDirection.RIGHT ? spacing : 'auto'}
                     name={user.name}>
-                    <AvatarBadge boxSize='1.25em' bg={user.status == UserStatus.ONLINE ? 'green.500' : 'whiteAlpha.700'} />
+                    <AvatarBadge boxSize='1.25em' bg={'green.500'} />
                 </Avatar>
             )
     }

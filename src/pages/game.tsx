@@ -1,4 +1,4 @@
-import { AvatarBadge, Container, Grid, GridItem, useColorModeValue, VStack } from '@chakra-ui/react'
+import { Container, Grid, GridItem, useColorModeValue, VStack } from '@chakra-ui/react'
 import Board from '../components/Board';
 import Joker from '../components/Joker';
 import Scoreboard from '../components/Scoreboard';
@@ -7,8 +7,6 @@ import Constants from '../styles/Constants';
 import GameController from '../truco/controller/GameController';
 import IGameObserver from '../truco/controller/IGameObserver';
 import { useLayoutEffect, useReducer, useContext } from 'react';
-import { useFormContext } from 'react-hook-form';
-import { GameContext } from '../context/GameContext';
 
 class GameManager implements IGameObserver {
   reload(): void {};

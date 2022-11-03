@@ -3,11 +3,13 @@ import Card, { Naipe } from "./Card";
 
 export default class Deck {    
     private _cards: Card[];
+    private _discard: Card[];
     private _joker: Card;
 
     constructor() {
         this._cards = this.generateCards();
-        this._joker = this._cards[this.cards.length -1];
+        this._joker = {} as Card; //this._cards[this.cards.length -1];
+        this._discard = [] as Card[];
     }
 
     public get cards(): Card[] {
@@ -22,6 +24,13 @@ export default class Deck {
     }
     public set joker(value: Card) {
         this._joker = value;
+    }
+
+    public get discard(): Card[] {
+        return this._discard;
+    }
+    public set discard(value: Card[]) {
+        this._discard = value;
     }
 
     public generateCards(): Card[] {
@@ -49,5 +58,24 @@ export default class Deck {
 
     public shuffleCards() {
         this.cards = this.cards.sort(() => Math.random() - 0.5);
+    }
+
+    public discardCard(card: Card) {
+        const top = 180;
+        const bottom = 70;
+        card.rotate = Math.floor(Math.random() * ( 1 + top - bottom ) ) + bottom;
+        this.discard.push(card);
+    }
+
+
+    public removeCard(desc: string): Card {
+        let index = 0
+        for (let idx = 0; idx < this.cards.length; idx++) {
+            const card = this.cards[idx];
+            if (card.getMask() === desc)
+                index = idx;
+        }
+
+        return this.cards.splice(index, 1)[0];
     }
 }

@@ -2,9 +2,8 @@ import { Button, Container, Flex, FormControl, Heading, Icon, Input, InputGroup,
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { FiHelpCircle } from "react-icons/fi"
-import FormController from "../truco/controller/form/FormController";
+import useViewModel from "../truco/presentation/form/FormViewModel";
 
-const controller = new FormController();
 export default function Start() {
     const {
         register,
@@ -15,6 +14,8 @@ export default function Start() {
     const router = useRouter();
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const { startMatch } = useViewModel();
+
     const textPlaceholder = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
     const handleStart = (data: any) => {
         const params = [
@@ -22,7 +23,7 @@ export default function Start() {
             { name: data.user2, algorithm: data.type2 }
         ]
         try {
-            controller.startMatch(params);
+            startMatch(params);
             toast({
                 title: 'Conectado',
                 description: 'Você está conectado. Aproveite!',

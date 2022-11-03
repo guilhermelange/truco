@@ -31,6 +31,17 @@ export default class User {
     public set algorithm(value: Algorithm) {
         this._algorithm = value;
     }
+
+    public removeCard(desc: string): Card {
+        let index = 0
+        for (let idx = 0; idx < this.cards.length; idx++) {
+            const card = this.cards[idx];
+            if (card.getMask() === desc)
+                index = idx;
+        }
+
+        return this.cards.splice(index, 1)[0];
+    }
 }
 
 export enum Algorithm {
@@ -39,19 +50,13 @@ export enum Algorithm {
 
 export function getAlgorithm(data: string): Algorithm {
     data = data.toUpperCase();
-    if (data == 'RANDOM') {
-        return Algorithm.RANDOM
-    }
 
-    if (data == 'BASELINE1') {
-        return Algorithm.BASELINE1
-    }
-
-    if (data == 'MONTE_CARLO') {
-        return Algorithm.BASELINE1
-    }
-
-    return Algorithm.RANDOM
+    const map = new Map();
+    map.set('RANDOM', Algorithm.RANDOM);
+    map.set('BASELINE1', Algorithm.BASELINE1);
+    map.set('MONTE_CARLO', Algorithm.MONTE_CARLO);
+ 
+    return map.get(data) ?? Algorithm.RANDOM;
 }
 
 export enum UserDirection {

@@ -1,5 +1,5 @@
 import { Avatar, AvatarBadge } from "@chakra-ui/react";
-import User, { UserDirection } from "../../truco/model/User";
+import User, { UserDirection } from "../../truco/domain/model/User";
 
 interface AvatarRequest {
     user: User;

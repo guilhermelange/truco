@@ -1,5 +1,5 @@
-import User from "../model/User";
 import nookies from 'nookies'
+import User from '../../domain/model/User';
 
 export default class Database {
     private static instance: Database;

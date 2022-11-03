@@ -1,34 +1,34 @@
-import { Box, Container, Flex, Grid, GridItem, Text, useColorModeValue, useFocusEffect, VStack } from '@chakra-ui/react'
+import { Box, Container, Grid, GridItem, Skeleton, Text, VStack } from '@chakra-ui/react'
 import Board from '../components/game/Board';
 import Joker from '../components/game/Joker';
 import Scoreboard from '../components/game/Scoreboard';
 import GameStatus from '../components/game/GameStatus';
 import Constants from '../styles/Constants';
-import GameController from '../truco/controller/GameController';
-import IGameObserver from '../truco/controller/IGameObserver';
-import { useLayoutEffect, useReducer, useEffect } from 'react';
-import {IoMdArrowRoundBack} from "react-icons/io"
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { IoMdArrowRoundBack } from "react-icons/io"
 import { useRouter } from 'next/router';
-
-class GameManager implements IGameObserver {
-  reload(): void { };
-}
-
-const manager: GameManager = new GameManager();
-const controller = new GameController();
-controller.addObserver(manager);
-controller.startMatch();
+import useViewModel from '../truco/presentation/game/GameViewModel'
 
 export default function Home() {
   const router = useRouter();
-  const [, forceReload] = useReducer(x => x + 1, 0);
   const formBackground = Constants.getFormBackground();
+  let loaded = false;
+  const [message, setMessage] = useState("");
 
   useLayoutEffect(() => {
-    manager.reload = () => {
-      forceReload();
+    if (!loaded) {
+      startMatch();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      loaded = true;
     }
+      
   }, [])
+
+  const { startMatch, deck, score, users, loading, matchScore, information} = useViewModel();
+
+  useEffect(() => {
+    setMessage(information);
+  }, [information]);
 
   try {
     return (
@@ -50,14 +50,13 @@ export default function Home() {
             display={'flex'}
             alignItems={'center'}
             justifyContent={'center'}>
-            {/* <Text position={'absolute'} top={0} left={0} onClick={() => {router.push('/')}}><IoMdArrowRoundBack></IoMdArrowRoundBack></Text> */}
-            <Board deck={controller.deck} users={controller.users} />
+            <Board deck={deck} users={users} loading={loading}/>
           </GridItem>
           <GridItem area={'information'} >
             <VStack alignItems={'start'}>
-              <Scoreboard score={controller.score} />
-              <Joker joker={controller.deck.joker} />
-              <GameStatus></GameStatus>
+              <Scoreboard score={score} users={users}/>
+              <Joker joker={deck.joker} loading={loading}/>
+              <GameStatus matchScore={matchScore} information={message}></GameStatus>
             </VStack>
           </GridItem>
         </Grid>
@@ -68,7 +67,7 @@ export default function Home() {
       <Container maxW={'8xl'} h={'100vh'} pt={4} pb={4}>
         <Box>
           <Text cursor={'pointer'}>Erro ao carregar conteúdo. Retorne à tela inicial:
-            <Text onClick={() => {router.push('/')}} display={'inline'}><IoMdArrowRoundBack></IoMdArrowRoundBack></Text>
+            <Text onClick={() => { router.push('/') }} display={'inline'}><IoMdArrowRoundBack></IoMdArrowRoundBack></Text>
           </Text>
         </Box>
       </Container>

@@ -15,19 +15,20 @@ interface IUserRequest {
 export interface IStartMatchResponse {
     winner: number;
     point: number[];
-    matchs: IMatchResponse[]
+    matches: IMatchResponse[]
 }
 
 export interface IMatchResponse {
     joker: string;
+    match_id?: number;
     winner: number;
-    points: number;
-    player1: string[];
-    player2: string[];
+    points?: number;
+    player_1: string[];
+    player_2: string[];
     plays: {
         type: string;
-        card: string;
-        point: number;
+        card?: string;
+        point?: number;
         player: number;
     }[]
 }

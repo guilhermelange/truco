@@ -4,17 +4,19 @@ import Avatar from "../../components/game/Avatar";
 import UserCards from "./UserCards";
 import DeckComponent from "./Deck";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import Deck from "../../truco/domain/model/Deck";
 import User, { UserDirection } from "../../truco/domain/model/User";
+import { useRouter } from "next/router";
 
 interface IBoardRequest {
     deck: Deck;
     users: User[];
     loading: boolean;
+    stop: any;
 }
 
-export default function Board({deck, users, loading}: IBoardRequest) {
+export default function Board({deck, users, loading, stop}: IBoardRequest) {
     const ref = useRef<HTMLDivElement>(null);
     const reff = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
@@ -30,6 +32,8 @@ export default function Board({deck, users, loading}: IBoardRequest) {
             setHeightGrid(reff.current.clientHeight)
         }
     }, [])
+
+    console.log('deck: ' + deck.joker?.getImage);
 
     return (
         <>
@@ -47,10 +51,10 @@ export default function Board({deck, users, loading}: IBoardRequest) {
                 // transform="rotate(90deg)"
                 // transition={'transform .8s ease-in-out'}
             >
-                <Text position={'absolute'} top={4} left={4} onClick={() => {router.push('/')}} cursor={'pointer'}
+                <Text position={'absolute'} top={4} left={4} onClick={() => {stop(); router.push('/')}} cursor={'pointer'}
                     display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
-                    {!loading && <Icon as={IoMdArrowRoundBack} w={6} h={6}></Icon>}
-                    {loading && <><Spinner/> <Text ml={3}>Carregando partida!</Text></>}
+                    {(!loading || !deck.joker?.getImage) && <Icon as={IoMdArrowRoundBack} w={6} h={6}></Icon>}
+                    {(loading && deck.joker?.getImage) && <><Spinner/> <Text ml={3}>Carregando partida!</Text></>}
                 </Text>
                 <GridItem >
                 </GridItem>

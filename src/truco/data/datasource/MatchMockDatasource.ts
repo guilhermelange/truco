@@ -6,17 +6,17 @@ export default class MatchMockDatasource implements IMatchDatasource {
         const json = `{
             "winner": 1,
             "points": [3,12],
-            "matchs": [
+            "matches": [
                 {
                     "joker": "2_PAUS",
                     "winner": 2,
                     "points": 3,
-                    "player1": [
+                    "player_1": [
                         "1_COPAS",
                         "2_COPAS",
                         "3_COPAS"
                     ],
-                    "player2": [
+                    "player_2": [
                         "1_ESPADAS",
                         "2_ESPADAS",
                         "3_ESPADAS"

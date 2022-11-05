@@ -10,7 +10,7 @@ interface IDeckRequest {
 export default function DeckComponent({ cardWidth, deck, loading}: IDeckRequest) {
     return (
         <>
-            {!loading && <Box transform={'rotate(225deg)'} position='absolute' bottom={0} left={5} id={'manilha'} cursor={'pointer'}>
+            {!loading && deck.joker?.getImage && <Box transform={'rotate(225deg)'} position='absolute' bottom={0} left={5} id={'manilha'} cursor={'pointer'}>
                 <img src={`/cards/${deck.joker.getImage()}`} height={'100%'} width={cardWidth}></img>
             </Box>}
             <Box transform={'rotate(90deg)'} position='absolute' id={'monte'} cursor={'pointer'}>

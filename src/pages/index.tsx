@@ -28,7 +28,7 @@ export default function Start() {
                 title: 'Conectado',
                 description: 'Você está conectado. Aproveite!',
                 status: 'success',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true
             })
             router.push('/game');
@@ -40,7 +40,7 @@ export default function Start() {
                 title: 'Falha ao iniciar',
                 description: message,
                 status: 'error',
-                duration: 4000,
+                duration: 2000,
                 isClosable: true
             })
         }

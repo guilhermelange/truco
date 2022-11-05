@@ -1,4 +1,4 @@
-import FormService, { IUserStartMatch } from "../../domain/usecase/form/FormService";
+import FormService, { IUserStartMatch } from "../../domain/service/form/FormService";
 
 export default function FormViewModel() {
     const service = new FormService();

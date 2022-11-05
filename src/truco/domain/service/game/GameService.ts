@@ -1,4 +1,5 @@
 import { IStartMatchResponse } from "../../../data/datasource/IMatchDatasource";
+import MatchDatasource from "../../../data/datasource/MatchDatasource";
 import MatchMockDatasource from "../../../data/datasource/MatchMockDatasource";
 import MatchRepository from "../../../data/repository/MatchRepository";
 import Deck from "../../model/Deck";
@@ -8,7 +9,7 @@ export default class GameService {
     private repository: MatchRepository
 
     constructor() {
-        this.repository = new MatchRepository(new MatchMockDatasource());
+        this.repository = new MatchRepository(new MatchDatasource());
     }
 
     async startMatch(users: User[]):  Promise<IStartMatchResponse> {

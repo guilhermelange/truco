@@ -9,22 +9,23 @@ import { IoMdArrowRoundBack } from "react-icons/io"
 import { useRouter } from 'next/router';
 import useViewModel from '../truco/presentation/game/GameViewModel'
 
+// let loaded = false;
 export default function Home() {
   const router = useRouter();
   const formBackground = Constants.getFormBackground();
-  let loaded = false;
   const [message, setMessage] = useState("");
 
-  useLayoutEffect(() => {
-    if (!loaded) {
-      startMatch();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      loaded = true;
-    }
-      
-  }, [])
-
-  const { startMatch, deck, score, users, loading, matchScore, information} = useViewModel();
+  const {
+    startMatch,
+    stopMatch,
+    deck,
+    score,
+    users,
+    loading,
+    matchScore,
+    information,
+    canStart
+  } = useViewModel();
 
   useEffect(() => {
     setMessage(information);
@@ -50,13 +51,18 @@ export default function Home() {
             display={'flex'}
             alignItems={'center'}
             justifyContent={'center'}>
-            <Board deck={deck} users={users} loading={loading}/>
+            <Board deck={deck} users={users} loading={loading} stop={stopMatch} />
           </GridItem>
           <GridItem area={'information'} >
             <VStack alignItems={'start'}>
-              <Scoreboard score={score} users={users}/>
-              <Joker joker={deck.joker} loading={loading}/>
-              <GameStatus matchScore={matchScore} information={message}></GameStatus>
+              <Scoreboard score={score} users={users} />
+              <Joker joker={deck.joker} loading={loading} />
+              <GameStatus
+                matchScore={matchScore}
+                information={message}
+                canStart={canStart}
+                stop={stopMatch}
+                start={startMatch}></GameStatus>
             </VStack>
           </GridItem>
         </Grid>

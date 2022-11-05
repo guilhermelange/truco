@@ -59,6 +59,15 @@ export function getAlgorithm(data: string): Algorithm {
     return map.get(data) ?? Algorithm.RANDOM;
 }
 
+export function getAlgorithmString(alg: Algorithm): string {
+    const map = new Map();
+    map.set(Algorithm.BASELINE1, "BASELINE1");
+    map.set(Algorithm.MONTE_CARLO, "MONTE_CARLO");
+    map.set(Algorithm.RANDOM, "RANDOM");
+ 
+    return map.get(alg) ?? "RANDOM";
+}
+
 export enum UserDirection {
     TOP, BOTTOM, RIGHT, LEFT
 }

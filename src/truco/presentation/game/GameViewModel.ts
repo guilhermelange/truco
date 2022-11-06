@@ -115,6 +115,10 @@ export default function GameViewModel() {
                     setInformation(`Jogador ${user.name} pediu Truco!`);
                     break;
 
+                case "TIE":
+                    setInformation(`Rodada empatada!`);
+                    break;
+
                 case "ACCEPT":
                     setInformation(`Jogador ${user.name} aceitou Truco!`);
                     points = (points === 1) ? 3 : points + 3;

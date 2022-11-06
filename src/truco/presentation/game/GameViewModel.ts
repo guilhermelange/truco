@@ -26,7 +26,6 @@ export default function GameViewModel() {
     const router = useRouter();
 
     async function startMatch(): Promise<void> {
-        console.log('passo1')
         setLoading(true);
         setCanStart(false);
         setUsers(db.users)
@@ -34,21 +33,18 @@ export default function GameViewModel() {
         finished = false;
         
         try {
-            console.log('passo2: ' + JSON.stringify(db.users))
             matches = await service.startMatch(db.users);
-            console.log('passo3: ' + JSON.stringify(matches))
-
+            
             while (matches.matches.length > 0) {
                 if (finished) {
                     return;
                 }
-                console.log('passo4')
                 await handleMatch();
             }
             if (finished) {
                 setInformation('Partida finalizada')
             } else {
-                setInformation(`Jogador ${matches.winner} ganhou o game!`);
+                setInformation(`Jogador ${users[matches.winner].name} ganhou o game!`);
             }
             forceReload();
         } catch (error) {
@@ -74,7 +70,6 @@ export default function GameViewModel() {
     }
 
     async function handleMatch(): Promise<void> {
-        console.log('Entrou match')
         const match = matches.matches.shift() as IMatchResponse;
         const deck = new Deck();
 

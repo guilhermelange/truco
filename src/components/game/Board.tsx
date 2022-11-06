@@ -62,7 +62,7 @@ export default function Board({deck, users, loading, stop}: IBoardRequest) {
                     {/* <Avatar user={users[2]} />
                     <UserCards user={users[2]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards> */}
                     <Avatar user={users[1]} direction={UserDirection.TOP} />
-                    {!loading && <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards>}
+                    {!loading && <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)" show={true}></UserCards>}
                 </GridItem>
                 <GridItem >
                 </GridItem>

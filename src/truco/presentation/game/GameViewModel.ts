@@ -44,7 +44,7 @@ export default function GameViewModel() {
             if (finished) {
                 setInformation('Partida finalizada')
             } else {
-                setInformation(`Jogador ${users[matches.winner].name} ganhou o game!`);
+                setInformation(`Jogador ${db.users[matches.winner].name} ganhou o game!`);
             }
             forceReload();
         } catch (error) {

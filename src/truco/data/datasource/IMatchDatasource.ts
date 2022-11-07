@@ -20,7 +20,7 @@ export interface IStartMatchResponse {
 
 export interface IMatchResponse {
     joker: string;
-    match_id?: number;
+    match_id?: string;
     winner: number;
     points?: number;
     player_1: string[];

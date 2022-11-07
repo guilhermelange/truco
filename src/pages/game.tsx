@@ -4,16 +4,15 @@ import Joker from '../components/game/Joker';
 import Scoreboard from '../components/game/Scoreboard';
 import GameStatus from '../components/game/GameStatus';
 import Constants from '../styles/Constants';
-import { useEffect, useLayoutEffect, useState } from 'react';
 import { IoMdArrowRoundBack } from "react-icons/io"
 import { useRouter } from 'next/router';
 import useViewModel from '../truco/presentation/game/GameViewModel'
+import Information from '../components/game/Information';
 
 // let loaded = false;
 export default function Home() {
   const router = useRouter();
   const formBackground = Constants.getFormBackground();
-  const [message, setMessage] = useState("");
 
   const {
     startMatch,
@@ -24,12 +23,11 @@ export default function Home() {
     loading,
     matchScore,
     information,
-    canStart
+    canStart,
+    matchId,
+    truco
   } = useViewModel();
 
-  useEffect(() => {
-    setMessage(information);
-  }, [information]);
 
   try {
     return (
@@ -51,18 +49,19 @@ export default function Home() {
             display={'flex'}
             alignItems={'center'}
             justifyContent={'center'}>
-            <Board deck={deck} users={users} loading={loading} stop={stopMatch} />
+            <Board deck={deck.current} users={users.current} loading={loading} stop={stopMatch} truco={truco.current}/>
           </GridItem>
           <GridItem area={'information'} >
             <VStack alignItems={'start'}>
-              <Scoreboard score={score} users={users} />
-              <Joker joker={deck.joker} loading={loading} />
+              <Scoreboard score={score.current} users={users.current} />
+              <Joker joker={deck.current.joker} loading={loading} />
               <GameStatus
-                matchScore={matchScore}
-                information={message}
-                canStart={canStart}
+                matchScore={matchScore.current}
+                canStart={canStart.current}
                 stop={stopMatch}
-                start={startMatch}></GameStatus>
+                start={startMatch}
+                matchId={matchId.current}></GameStatus>
+                <Information information={information.current}></Information>
             </VStack>
           </GridItem>
         </Grid>

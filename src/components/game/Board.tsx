@@ -4,7 +4,6 @@ import Avatar from "../../components/game/Avatar";
 import UserCards from "./UserCards";
 import DeckComponent from "./Deck";
 import { IoMdArrowRoundBack } from "react-icons/io";
-//import { useRouter } from "next/router";
 import Deck from "../../truco/domain/model/Deck";
 import User, { UserDirection } from "../../truco/domain/model/User";
 import { useRouter } from "next/router";
@@ -14,9 +13,10 @@ interface IBoardRequest {
     users: User[];
     loading: boolean;
     stop: any;
+    truco: boolean[];
 }
 
-export default function Board({deck, users, loading, stop}: IBoardRequest) {
+export default function Board({ deck, users, loading, stop, truco }: IBoardRequest) {
     const ref = useRef<HTMLDivElement>(null);
     const reff = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
@@ -33,8 +33,6 @@ export default function Board({deck, users, loading, stop}: IBoardRequest) {
         }
     }, [])
 
-    console.log('deck: ' + deck.joker?.getImage);
-
     return (
         <>
             <Grid
@@ -48,13 +46,13 @@ export default function Board({deck, users, loading, stop}: IBoardRequest) {
                 rounded={500}
                 border={'10px solid'}
                 borderColor={'whiteAlpha.500'}
-                // transform="rotate(90deg)"
-                // transition={'transform .8s ease-in-out'}
+            // transform="rotate(90deg)"
+            // transition={'transform .8s ease-in-out'}
             >
-                <Text position={'absolute'} top={4} left={4} onClick={() => {stop(); router.push('/')}} cursor={'pointer'}
+                <Text position={'absolute'} top={4} left={4} onClick={() => { stop(); router.push('/') }} cursor={'pointer'}
                     display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
-                    {(!loading || !deck.joker?.getImage) && <Icon as={IoMdArrowRoundBack} w={6} h={6}></Icon>}
-                    {(loading && deck.joker?.getImage) && <><Spinner/> <Text ml={3}>Carregando partida!</Text></>}
+                    {!loading && <Icon as={IoMdArrowRoundBack} w={6} h={6}></Icon>}
+                    {loading && <><Spinner /> <Text ml={3}>Carregando partida!</Text></>}
                 </Text>
                 <GridItem >
                 </GridItem>
@@ -62,6 +60,16 @@ export default function Board({deck, users, loading, stop}: IBoardRequest) {
                     {/* <Avatar user={users[2]} />
                     <UserCards user={users[2]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards> */}
                     <Avatar user={users[1]} direction={UserDirection.TOP} />
+                    {truco[1] &&
+                        <Box position={'absolute'}
+                            top={4}
+                            left={'80%'}
+                            transform='translate(-50%, -50%)'
+                            fontWeight={'bold'}
+                            fontSize={"2xl"}>
+                            Truco!!!
+                        </Box>}
+
                     {!loading && <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)" show={true}></UserCards>}
                 </GridItem>
                 <GridItem >
@@ -79,7 +87,7 @@ export default function Board({deck, users, loading, stop}: IBoardRequest) {
                     <DeckComponent deck={deck} cardWidth={cardWidth} loading={loading}></DeckComponent>
 
                     {/* Cartas viradas / monte */}
-                    {deck.discard && deck.discard.map(item => 
+                    {deck.discard && deck.discard.map(item =>
                         <Box key={item.getMask()} transform={`rotate(${item.rotate}deg)`} position='absolute'>
                             <img src={`/cards/${item.getImage()}`} height={'100%'} width={cardWidth}></img>
                         </Box>
@@ -90,7 +98,7 @@ export default function Board({deck, users, loading, stop}: IBoardRequest) {
                     <Box transform={'rotate(105deg)'} position='absolute'>
                         <img src={'/cards/3_paus.png'} height={'100%'} width={cardWidth + 20}></img>
                     </Box> */}
-                    
+
                 </GridItem>
                 <GridItem position={'relative'}>
                     {/* <Avatar user={users[1]} />
@@ -99,7 +107,17 @@ export default function Board({deck, users, loading, stop}: IBoardRequest) {
                 <GridItem >
                 </GridItem>
                 <GridItem ref={reff} position='relative'>
-                    <Avatar user={users[0]} direction={UserDirection.BOTTOM}/>
+                    <Avatar user={users[0]} direction={UserDirection.BOTTOM} />
+                    {truco[0] &&
+                        <Box position={'absolute'}
+                            bottom={2}
+                            left={'80%'}
+                            transform='translate(-50%, -0%)'
+                            fontWeight={'bold'}
+                            fontSize={"2xl"}>
+                            Truco!!!
+                        </Box>}
+
                     {!loading && <UserCards user={users[0]} cardWidth={cardWidth} show={true}></UserCards>}
                 </GridItem>
                 <GridItem >

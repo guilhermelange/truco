@@ -49,19 +49,20 @@ export default function Home() {
             display={'flex'}
             alignItems={'center'}
             justifyContent={'center'}>
-            <Board deck={deck.current} users={users.current} loading={loading} stop={stopMatch} truco={truco.current}/>
+            <Board deck={deck.current} users={users.current} loading={loading} stop={stopMatch} truco={truco.current} />
           </GridItem>
           <GridItem area={'information'} >
             <VStack alignItems={'start'}>
               <Scoreboard score={score.current} users={users.current} />
-              <Joker joker={deck.current.joker} loading={loading} />
+              {/* <Joker joker={deck.current.joker} loading={loading} /> */}
               <GameStatus
                 matchScore={matchScore.current}
                 canStart={canStart.current}
                 stop={stopMatch}
                 start={startMatch}
-                matchId={matchId.current}></GameStatus>
-                <Information information={information.current}></Information>
+                matchId={matchId.current}
+                joker={deck.current.joker}></GameStatus>
+              <Information information={information.current}></Information>
             </VStack>
           </GridItem>
         </Grid>

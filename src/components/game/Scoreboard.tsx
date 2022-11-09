@@ -15,14 +15,14 @@ export default function Scoreboard({ score, users }: IScoreboardRequest) {
             <Heading size={'md'}>Placar</Heading>
             <Text w={'100%'} mt={0}>
                 <Flex justifyContent={'space-between'} gap={0} bgColor={'whiteAlpha.200'} p={2} rounded={6} w={'100%'}>
-                    <Text>{users[0]?.name ?? 'Nós'}: </Text>
-                    <Text mr={2}>{score[0]}</Text>
+                    <Text>{users[1]?.name ?? 'Eles'}: </Text>
+                    <Text mr={2}>{score[1]}</Text>
                 </Flex>
             </Text>
             <Text w={'100%'} mt={0}>
                 <Flex justifyContent={'space-between'} gap={0} bgColor={'whiteAlpha.200'} p={2} rounded={6} w={'100%'}>
-                    <Text>{users[1]?.name ?? 'Eles'}: </Text>
-                    <Text mr={2}>{score[1]}</Text>
+                    <Text>{users[0]?.name ?? 'Nós'}: </Text>
+                    <Text mr={2}>{score[0]}</Text>
                 </Flex>
             </Text>
         </VStack>

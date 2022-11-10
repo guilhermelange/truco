@@ -62,7 +62,8 @@ export default function Home() {
                 stop={stopMatch}
                 start={startMatch}
                 matchId={matchId.current}
-                joker={deck.current.joker}></GameStatus>
+                joker={deck.current.joker}
+                deck={deck.current}></GameStatus>
                 <Dash users={users.current} canStart={canStart.current}></Dash>
               <Information information={information.current}></Information>
             </VStack>

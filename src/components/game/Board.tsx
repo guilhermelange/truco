@@ -70,7 +70,7 @@ export default function Board({ deck, users, loading, stop, truco }: IBoardReque
                             Truco!!!
                         </Box>}
 
-                    {!loading && <UserCards user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)" show={true}></UserCards>}
+                    {!loading && <UserCards deck={deck} user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)" show={true}></UserCards>}
                 </GridItem>
                 <GridItem >
                 </GridItem>
@@ -118,7 +118,7 @@ export default function Board({ deck, users, loading, stop, truco }: IBoardReque
                             Truco!!!
                         </Box>}
 
-                    {!loading && <UserCards user={users[0]} cardWidth={cardWidth} show={true}></UserCards>}
+                    {!loading && <UserCards deck={deck} user={users[0]} cardWidth={cardWidth} show={true}></UserCards>}
                 </GridItem>
                 <GridItem >
                 </GridItem>

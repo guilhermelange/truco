@@ -78,4 +78,23 @@ export default class Deck {
 
         return this.cards.splice(index, 1)[0];
     }
+
+    public isJoker(card: Card): boolean {
+        let jokerNum = 0;
+        if (this.joker) {
+            if (this.joker.number == 12) {
+                jokerNum = 1
+            } else if (this.joker.number == 7) {
+                jokerNum = 10
+            } else {
+                jokerNum = this.joker.number + 1
+            }
+        }
+
+        if (card.number == jokerNum) {
+            return true;
+        }
+
+        return false;
+    }
 }

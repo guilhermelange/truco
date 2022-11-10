@@ -13,10 +13,10 @@ interface IBoardRequest {
     users: User[];
     loading: boolean;
     stop: any;
-    truco: boolean[];
+    status: string[];
 }
 
-export default function Board({ deck, users, loading, stop, truco }: IBoardRequest) {
+export default function Board({ deck, users, loading, stop, status }: IBoardRequest) {
     const ref = useRef<HTMLDivElement>(null);
     const reff = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
@@ -60,14 +60,14 @@ export default function Board({ deck, users, loading, stop, truco }: IBoardReque
                     {/* <Avatar user={users[2]} />
                     <UserCards user={users[2]} cardWidth={cardWidth} rotate="rotate(180deg)"></UserCards> */}
                     <Avatar user={users[1]} direction={UserDirection.TOP} />
-                    {truco[1] &&
+                    {status[1] &&
                         <Box position={'absolute'}
                             top={4}
                             left={'80%'}
                             transform='translate(-50%, -50%)'
                             fontWeight={'bold'}
                             fontSize={"2xl"}>
-                            Truco!!!
+                            {status[1]}
                         </Box>}
 
                     {!loading && <UserCards deck={deck} user={users[1]} cardWidth={cardWidth} rotate="rotate(180deg)" show={true}></UserCards>}
@@ -108,14 +108,14 @@ export default function Board({ deck, users, loading, stop, truco }: IBoardReque
                 </GridItem>
                 <GridItem ref={reff} position='relative'>
                     <Avatar user={users[0]} direction={UserDirection.BOTTOM} />
-                    {truco[0] &&
+                    {status[0] &&
                         <Box position={'absolute'}
                             bottom={2}
                             left={'80%'}
                             transform='translate(-50%, -0%)'
                             fontWeight={'bold'}
                             fontSize={"2xl"}>
-                            Truco!!!
+                            {status[0]}
                         </Box>}
 
                     {!loading && <UserCards deck={deck} user={users[0]} cardWidth={cardWidth} show={true}></UserCards>}

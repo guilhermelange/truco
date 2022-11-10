@@ -26,7 +26,7 @@ export default function Home() {
     information,
     canStart,
     matchId,
-    truco
+    status
   } = useViewModel();
 
 
@@ -50,7 +50,7 @@ export default function Home() {
             display={'flex'}
             alignItems={'center'}
             justifyContent={'center'}>
-            <Board deck={deck.current} users={users.current} loading={loading} stop={stopMatch} truco={truco.current} />
+            <Board deck={deck.current} users={users.current} loading={loading} stop={stopMatch} status={status.current} />
           </GridItem>
           <GridItem area={'information'} >
             <VStack alignItems={'start'}>
@@ -62,8 +62,7 @@ export default function Home() {
                 stop={stopMatch}
                 start={startMatch}
                 matchId={matchId.current}
-                joker={deck.current.joker}
-                deck={deck.current}></GameStatus>
+                joker={deck.current.joker}></GameStatus>
                 <Dash users={users.current} canStart={canStart.current}></Dash>
               <Information information={information.current}></Information>
             </VStack>
@@ -72,6 +71,7 @@ export default function Home() {
       </Container>
     )
   } catch (error) {
+    console.log(error);
     return (
       <Container maxW={'8xl'} h={'100vh'} pt={4} pb={4}>
         <Box>

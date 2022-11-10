@@ -22,7 +22,8 @@ export default function GameViewModel() {
     const information = useRef('');
     const canStart = useRef(true);
     const matchId = useRef('');
-    const truco = useRef([false, false] as boolean[]);
+    //const truco = useRef([false, false] as boolean[]);
+    const status = useRef(["", ""] as string[]);
     let matches = {} as IStartMatchResponse; 
     const toast = useToast()
     const router = useRouter();
@@ -33,7 +34,7 @@ export default function GameViewModel() {
         users.current = db.users
         score.current = [0, 0]
         finished = false;
-        truco.current = [false, false];
+        status.current = ["", ""]
 
         try {
             matches = await service.startMatch(db.users);
@@ -69,6 +70,7 @@ export default function GameViewModel() {
 
     async function stopMatch(): Promise<void> {
         finished = true;
+        status.current = ["", ""];
         score.current = [0, 0];
         matchScore.current = 1;
         information.current = '';
@@ -120,7 +122,7 @@ export default function GameViewModel() {
                     break;
 
                 case "TRUCO":
-                    truco.current[play.player] = true;
+                    status.current[play.player] = "Truco!!";
                     information.current = `Jogador ${user.name} pediu Truco!`;
                     break;
 
@@ -129,15 +131,18 @@ export default function GameViewModel() {
                     break;
 
                 case "ACCEPT":
+                    status.current[play.player] = "Aceito!!";
                     information.current = `Jogador ${user.name} aceitou Truco!`;
                     points = (points === 1) ? 3 : points + 3;
                     break;
             
                 case "RUN":
+                    status.current[play.player] = "Corri!!";
                     information.current = `Jogador ${user.name} correu!`;
                     break;
 
                 case "WIN":
+                    status.current[play.player] = "Ganhei!!";
                     information.current = `Jogador ${user.name} ganhou a partida!`
                     const newScore = score.current;
                     newScore[play.player] = (newScore[play.player] ?? 0) + points
@@ -151,7 +156,7 @@ export default function GameViewModel() {
             matchScore.current = points;
             forceReload()
             await delay(db.sleep)
-            truco.current = [false, false];
+            status.current = ["", ""];
         }
     }
 
@@ -166,6 +171,6 @@ export default function GameViewModel() {
         stopMatch,
         canStart,
         matchId,
-        truco
+        status
     }
 }

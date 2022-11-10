@@ -61,7 +61,7 @@ export function getAlgorithm(data: string): Algorithm {
 
 export function getAlgorithmString(alg: Algorithm): string {
     const map = new Map();
-    map.set(Algorithm.BASELINE1, "BASELINE1");
+    map.set(Algorithm.BASELINE1, "BASELINE");
     map.set(Algorithm.MONTE_CARLO, "MONTE_CARLO");
     map.set(Algorithm.RANDOM, "RANDOM");
  

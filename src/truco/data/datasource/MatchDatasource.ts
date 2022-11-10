@@ -9,7 +9,7 @@ export default class MatchDatasource implements IMatchDatasource {
                 id: id,
                 algorithm: getAlgorithmString(user.algorithm)
             }));
-
+            
         const { data } = await api.post('/match', JSON.stringify(payload));
         return data as IStartMatchResponse;
     }

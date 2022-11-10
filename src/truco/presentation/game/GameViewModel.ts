@@ -44,6 +44,9 @@ export default function GameViewModel() {
                 }
                 await handleMatch();
             }
+
+            db.globalScore[matches.winner] += 1;
+
             if (finished) {
                 information.current = 'Partida finalizada'
             } else {
@@ -98,7 +101,7 @@ export default function GameViewModel() {
         setLoading(false);
         deck.current = currentDeck;
         forceReload()
-        await delay(1500)
+        await delay(db.sleep)
 
         let points = 1
         matchScore.current = points
@@ -147,7 +150,7 @@ export default function GameViewModel() {
 
             matchScore.current = points;
             forceReload()
-            await delay(1500)
+            await delay(db.sleep)
             truco.current = [false, false];
         }
     }

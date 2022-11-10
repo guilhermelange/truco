@@ -23,8 +23,10 @@ export default class FormService {
             }
 
             users.push(new User(user.name, getAlgorithm(user.algorithm)))
+            
         }
-
-        Database.getInstance().users = users;
+        const db = Database.getInstance();
+        db.users = users;
+        db.globalScore = [0, 0];
     }
 }

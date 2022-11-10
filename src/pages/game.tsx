@@ -8,6 +8,7 @@ import { IoMdArrowRoundBack } from "react-icons/io"
 import { useRouter } from 'next/router';
 import useViewModel from '../truco/presentation/game/GameViewModel'
 import Information from '../components/game/Information';
+import Dash from '../components/game/Dash';
 
 // let loaded = false;
 export default function Home() {
@@ -62,6 +63,7 @@ export default function Home() {
                 start={startMatch}
                 matchId={matchId.current}
                 joker={deck.current.joker}></GameStatus>
+                <Dash users={users.current} canStart={canStart.current}></Dash>
               <Information information={information.current}></Information>
             </VStack>
           </GridItem>

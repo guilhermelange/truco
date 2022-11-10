@@ -67,7 +67,7 @@ export default function GameStatus({ matchScore, canStart, stop, start, matchId,
                 <Flex justifyContent={'space-between'} gap={0} bgColor={'whiteAlpha.200'} p={2} rounded={6} w={'100%'}>
                     <Slider
                         id='slider'
-                        defaultValue={1500}
+                        defaultValue={2000}
                         min={20}
                         max={1500}
                         onChange={(v) => setSliderValue(v)}

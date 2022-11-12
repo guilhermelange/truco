@@ -64,7 +64,7 @@ export default function Home() {
                 matchId={matchId.current}
                 joker={deck.current.joker}></GameStatus>
                 <Dash users={users.current} canStart={canStart.current}></Dash>
-              <Information information={information.current}></Information>
+              <Information information={information.current} canStart={canStart.current}></Information>
             </VStack>
           </GridItem>
         </Grid>

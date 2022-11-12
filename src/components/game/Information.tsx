@@ -3,10 +3,16 @@ import Constants from "../../styles/Constants";
 
 interface IInformationRequest {
     information: string;
+    canStart: boolean;
 }
 
-export default function Information({ information }: IInformationRequest) {
+export default function Information({ information, canStart }: IInformationRequest) {
     const formBackground = Constants.getFormBackground();
+
+    if (canStart) {
+        return <div></div>
+    }
+
 
     return (
         <VStack alignItems={'start'} bg={formBackground} rounded={6} p={3} w={'full'}>

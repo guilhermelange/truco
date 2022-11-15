@@ -82,7 +82,7 @@ export default function Start() {
                                         {...register('type1', {})}>
                                         <option value='random'>Random</option>
                                         <option value='baseline1'>Baseline 1</option>
-                                        <option value='complex'>Monte Carlo</option>
+                                        <option value='MONTE_CARLO'>Monte Carlo</option>
                                     </Select>
                                 </FormControl>
                                 <FormControl isInvalid={!!errors.user2} display={'flex'} gap={2}>
@@ -99,7 +99,7 @@ export default function Start() {
                                         {...register('type2', {})}>
                                         <option value='random'>Random</option>
                                         <option value='baseline1'>Baseline 1</option>
-                                        <option value='complex'>Monte Carlo</option>
+                                        <option value='MONTE_CARLO'>Monte Carlo</option>
                                     </Select>
                                 </FormControl>
                                 <Button isLoading={isSubmitting} type='submit'>
